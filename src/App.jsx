@@ -7,20 +7,20 @@ import { Footer, Header } from './components';
 import { Outlet } from 'react-router-dom';
 
 function App() {
-  const[loader, setLoader] = useState(true);
+  const[loader, setLoader] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    // authService.getCurrentUser()
-    // .then((userData) => {
-    //   if(userData){
-    //     dispatch(login({userData}));
-    //   } else{
-    //     dispatch(logout());
-    //   }
-    // })
-    // .finally(() => {
-    //   setLoader(false);
-    // })
+    authService.getCurrentUser()
+    .then((userData) => {
+      if(userData){
+        dispatch(login({userData}));
+      } else{
+        dispatch(logout());
+      }
+    })
+    .finally(() => {
+      setLoader(false);
+    })
   })
 
   return !loader ? (
@@ -28,7 +28,7 @@ function App() {
     <div className='w-full block'>
       <Header />
       <main>
-        TODO <Outlet  />
+        <Outlet  />
       </main>
       <Footer />
     </div>

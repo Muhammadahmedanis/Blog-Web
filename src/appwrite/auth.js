@@ -6,6 +6,8 @@ export class AuthService {
     account;
 
     constructor(){
+        // console.log("Appwrite URL:", config.appwriteUrl);
+        // console.log("Appwrite Project ID:", config.appwriteProjectId);
         this.client
                 .setEndpoint(config.appwriteUrl)
                 .setProject(config.appwriteProjectId);
@@ -37,11 +39,12 @@ export class AuthService {
     //  if i land directly in to page then check user login or not
     async getCurrentUser() {
         try {
-            return await this.account.get(); 
+            const user = await this.account.get();
+            console.log(user);
+             return user;
         } catch (error) {
             throw error;
         }
-        return null;
     }
 
     async logout(){

@@ -5,18 +5,20 @@ export class Service{
     client = new Client();
     databases;
     bucket;
-
+    
     constructor(){
         this.client
-                .setEndpoint(config.appwriteUrl)
-                .setProject(config.appwriteProjectId);
-                this.databases = new Databases(this.client);
-                this.bucket = new Storage(this.client);
+        .setEndpoint(config.appwriteUrl)
+        .setProject(config.appwriteProjectId);
+        this.databases = new Databases(this.client);
+        this.bucket = new Storage(this.client);
     }
-
-    async createPost({ title, slug, content, featturedImage, status, userId }){
+    
+    
+    async createPost({ title, slug, content, featuredImage, status, userId }){
+        console.log(content);
         try {
-            return await this.databases.createDocument(config.appwriteDatabaseId, config.appwriteCollectionId, slug, { title, content, featturedImage, status, userId })
+            return await this.databases.createDocument( config.appwriteDatabaseId, config.appwriteCollectionId, slug, { title, content, featuredImage, status, userId,  })
         } catch (error) {
             console.log("error in create post");
             throw error

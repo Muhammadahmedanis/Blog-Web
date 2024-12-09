@@ -2,8 +2,8 @@ import React from 'react';
 import {Container, Logo, LogoutBtn} from './index';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { logout } from '../store/authSlice';
 import { useNavigate } from 'react-router-dom';
+
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -21,8 +21,8 @@ function Header() {
       active: !authStatus,
     },
     {
-      name: "Signup",
-      slug: "/signup",
+      name: 'Signup',
+      slug: '/signup',
       active: !authStatus,
     },
     {
@@ -55,7 +55,7 @@ function Header() {
                   </li>
                 ) : null
             )}
-            { auth.status && (
+            { authStatus && (
               <li>
                 <LogoutBtn />
               </li>
