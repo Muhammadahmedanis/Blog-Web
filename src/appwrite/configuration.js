@@ -16,9 +16,8 @@ export class Service{
     
     
     async createPost({ title, slug, content, featuredImage, status, userId }){
-        console.log(content);
         try {
-            return await this.databases.createDocument( config.appwriteDatabaseId, config.appwriteCollectionId, slug, { title, content, featuredImage, status, userId,  })
+            return await this.databases.createDocument( config.appwriteDatabaseId, config.appwriteCollectionId, slug, { title, content, featuredImage, status, userId})
         } catch (error) {
             console.log("error in create post");
             throw error
@@ -72,14 +71,16 @@ export class Service{
         }
     }
 
-    async getPosts(queries = [Query .equal("status", "active")]){
+    // [ Query.equal("status", "active") ]
+    async getPosts(queries = [Query.equal("status", "active")]){
         try {
-            return await this.databases.listDocuments(
+            const response = await this.databases.listDocuments(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 queries,
-                // [ Query .equal("status", "active") ]
-            )
+            );
+            // console.log(response);
+            return response;
         } catch (error) {
             console.log("error in get all post");
             return false;

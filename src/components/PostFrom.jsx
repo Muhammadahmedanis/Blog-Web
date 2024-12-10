@@ -18,11 +18,12 @@ function PostFrom({post}) {
   const userData = useSelector(state => state.auth.userData);
   const submit = async(data) => {
     if (post) {
-      const file = data.image[0] ? service.uploadFile(data.image[0]) : null;
+      const file = data.image[0] ? await service.uploadFile(data.image[0]) : null;
       if(file){
         service.deletePost(post.featuredImage);
       }
-      const dbPost = service.updatePost(post.$id, {...data, featuredImage: file ? file.$id : undefined})
+      const dbPost = await service.updatePost(post.$id, {...data, featuredImage: file ? file.$id : undefined})
+      console.log(dbPost);
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`)
         } 
@@ -37,7 +38,6 @@ function PostFrom({post}) {
             ...data,
             userId: userData?.$id,
           })
-          console.log(dbPost);
           if (dbPost) {
             navigate(`/post/${dbPost.$id}`)
           }
