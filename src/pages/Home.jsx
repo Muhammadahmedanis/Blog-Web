@@ -5,18 +5,17 @@ import { Container, PostCard } from '../components';
 function Home() {
     const[posts, setPosts] = useState([]);
     useEffect(() => {
-        appwriteService.getPosts([]).then((posts) => {
+        posts.length && appwriteService.getPosts([]).then((posts) => {
             if(posts){
                 setPosts(posts.documents)
             }
         })
         .catch((err) => (console.log(err)))
     }, [])
-    console.log(posts.length);
 
     if(posts.length === 0) {
         return(
-            <div className="w-full py-8 mt-4 text-center">
+            <div className="w-full py-8 pt-36 text-center bg-blue-200">
                 <Container>
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
