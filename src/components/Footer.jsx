@@ -8,9 +8,9 @@ import { FaInstagram } from "react-icons/fa";
 
 function Footer() {
   return (
-    <div className="font-roboto">
-    <footer className="bg-blue-200 text-blue-800">
-      <div className="pt-5 pb-8 px-5 relative">
+    <div className="font-roboto mt-10">
+    <footer className="bg-blue-200 text-blue-800 relative">
+      <div className="pb-8 px-5 ">
         <div className="flex flex-wrap justify-center items-center m-5">
           {/* Column 1: LOGO & Get Started */}
           <div className="w-1/2 lg:w-1/4">
@@ -19,7 +19,7 @@ function Footer() {
                 <Logo width="100px" />
             </div>
             </div>
-            <div className="mt-[30px]">
+            <div className="mt-3">
               <h2 className="text-blue-400 font-extrabold text-sm uppercase mb-0">Get Started</h2>
               <ul className="list-none mt-[10px] pl-0 text-blue-800">
                 <li className="mt-[5px]">
@@ -37,7 +37,7 @@ function Footer() {
 
           {/* Column 2: Company & Legal */}
           <div className="w-1/2 lg:w-1/4">
-            <div className="mt-[30px]">
+            <div className="mt-3">
               <h2 className="text-blue-400 font-extrabold text-sm uppercase mb-0">Company</h2>
               <ul className="list-none mt-[10px] pl-0 text-blue-800">
                 <li className="mt-[5px]">
@@ -52,7 +52,7 @@ function Footer() {
               </ul>
             </div>
 
-            <div className="mt-[30px]">
+            <div className="mt-3">
               <h2 className="text-blue-400 font-extrabold text-sm uppercase mb-0">Legal</h2>
               <ul className="list-none mt-[10px] pl-0">
                 <li className="mt-[5px]">
@@ -67,7 +67,7 @@ function Footer() {
 
           {/* Column 3: Quick Links */}
           <div className="w-1/2 lg:w-1/4">
-            <div className="mt-[30px]">
+            <div className="mt-3">
               <h2 className="text-blue-400 font-extrabold text-sm uppercase mb-0">Quick Links</h2>
               <ul className="list-none mt-[10px] pl-0 text-blue-800">
                 <li className="mt-[5px]">
@@ -94,7 +94,7 @@ function Footer() {
 
           {/* Column 4: Call to Action */}
           <div className="w-1/2 lg:w-1/4">
-            <div className="mt-[30px]">
+            <div className="mt-3">
               <h2 className="text-blue-400 font-extrabold text-sm uppercase mb-0">Let's Chat</h2>
               <p className="mt-[10px] mb-[20px] text-blue-800">Have a support question?</p>
               <a className="bg-blue-800 text-blue-200 py-[12px] px-[30px] rounded-[21px] inline-block font-extrabold text-xs uppercase cursor-pointer transition-all hover:bg-[#fffff2] hover:text-[#00bef0]" href="#">Get in Touch</a>

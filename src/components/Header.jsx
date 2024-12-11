@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoHomeOutline } from "react-icons/io5";
+import { RiBloggerLine } from "react-icons/ri";
+import { HiPencilSquare } from "react-icons/hi2";
 
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
@@ -14,11 +17,12 @@ function Header() {
       name: "Home",
       slug: "/",
       active: authStatus,
+      icon: <IoHomeOutline size={22} />,
     }, 
     {
       name: "Login",
       slug: "/login",
-      active: authStatus,
+      active: !authStatus,
     },
     {
       name: 'Signup',
@@ -29,16 +33,18 @@ function Header() {
       name: "All Post",
       slug: "/all-post",
       active: authStatus,
+      icon: <HiPencilSquare size={22} />
     },
     {
       name: "Add Post",
       slug: "/add-post",
       active: authStatus,
+      icon: <RiBloggerLine size={21} />,
     }
   ]
 
   return (
-    <nav className="shadow bg-blue-100 dark:bg-gray-900 fixed top-0 w-full">
+    <nav className="shadow bg-blue-100 dark:bg-gray-900 fixed top-0 w-full z-10">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <div>
             <Link to='/'> <Logo width='60px'/> </Link>
@@ -47,12 +53,12 @@ function Header() {
             <GiHamburgerMenu size={30} />
         </button>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-blue-100 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="font-medium flex flex-col gap-3 p-4 md:p-0 md:flex-row md:space-x-8l rounded-lg">
               {
-                navItems.map((item) => 
+                navItems.map((item) =>  
                   item.active ? (
-                    <li key={item.name}>
-                      <button onClick={() => navigate(item.slug)} className='py-2 px-5 text-[18px] font-medium rounded-lg border border-transparent bg-blue-200 text-blue-800 hover:bg-blue-300 focus:outline-none focus:bg-blue-200'>{item.name}</button>
+                    <li className='py-2 px-5 text-[18px] font-medium rounded-lg border border-blue-300  bg-blue-200 text-blue-800 hover:bg-blue-300 focus:outline-none focus:bg-blue-200' key={item.name}>
+                      <button className='w-full justify-center flex items-center gap-2' onClick={() => navigate(item.slug)} >{item.name} {item.icon}</button>
                     </li>
                   ) : null
               )}

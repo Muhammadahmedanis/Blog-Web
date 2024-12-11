@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
 import store from './store/store.js';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom'
 import Home from './pages/Home.jsx';
 import AllPosts from './pages/AllPost.jsx';
 import { AuthLayout, Login, Signup } from './components/index.js';
@@ -12,6 +12,18 @@ import { AuthLayout, Login, Signup } from './components/index.js';
 import AddPost from './pages/AddPost.jsx';
 import EditPost from './pages/EditPost.jsx';
 import Post from './pages/Post.jsx';
+// const router = createBrowserRouter(
+//     createRoutesFromElements(
+//         <Route path='/' element={<App />}>
+//             <Route path='/;id' element={} />
+//             <Route path='/login' element={} />
+//             <Route path='/signup' element={} />
+//             <Route path='/all-post' element={} />
+//             <Route path='/' element={} />
+//         </Route>
+//     )
+// )
+
 
 const router = createBrowserRouter(
     [
@@ -20,7 +32,7 @@ const router = createBrowserRouter(
             element: <App />,
             children: [
                 {
-                    path: '/',
+                    path: '/home/:id',
                     element: <Home />
                 },
                 {
