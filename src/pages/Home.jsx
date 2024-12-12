@@ -1,9 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import appwriteService from '../appwrite/configuration';
 import { Container, PostCard } from '../components';
-
+import { useDispatch } from 'react-redux';
+import authService from '../appwrite/auth';
+import { login, logout } from '../store/authSlice'
 function Home() {
     const[posts, setPosts] = useState([]);
+    const[loader, setLoader] = useState(true);
+    const dispatch = useDispatch();
+    // useEffect(() => {
+    //   authService.getCurrentUser()
+    //   .then((userData) => {
+    //     console.log(userData);
+        
+    //     if(userData){
+    //       dispatch(login(userData));
+    //     } else{
+    //       dispatch(logout());
+    //     }
+    //   }).catch((err) => {
+    //     console.log("error", err);
+    //   })
+    //   .finally(() => {
+    //     setLoader(false);
+    //   })
+    // }, [])
     useEffect(() => {
         appwriteService.getPosts([]).then((posts) => {
             if(posts){
@@ -12,7 +33,7 @@ function Home() {
         })
         .catch((err) => (console.log(err)))
     }, [])
-    // console.log(posts);
+    
     
     if(posts.length === 0) {
         return(
@@ -20,19 +41,15 @@ function Home() {
                 <div className="w-full">
                     <h1 className="text-2xl font-bold hover:text-gray-500"> Login to read posts </h1>
                 </div>
-                {/* <div className="flex items-center justify-center">
-                </div> */}
-                {/* <Container>
-                </Container> */}
             </div>
         )
     } else {
         return(
-            <div className='w-full py-8'>
+            <div className='py-6'>
                 <Container>
-                <div className=''>
+                <div className='flex flex-wrap gap-5'>
                     {posts.map((post) => (
-                        <div key={post.$id} className='p-2 flex flex-wrap gap-4'>
+                        <div key={post.$id}>
                             <PostCard {...post} />
                         </div>
                     ))}

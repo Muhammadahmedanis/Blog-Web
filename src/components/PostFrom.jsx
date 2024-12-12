@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import service from '../appwrite/configuration'
 import { RTE, Input, Button, Select } from './index';
 
 function PostFrom({post}) { 
+  // const { id } = useParams();
+  // console.log(id);
+  
   const { register, handleSubmit, watch, setValue, control, getValues } = useForm({ 
     defaultValues: {
       topic: post?.topic || '',
@@ -17,6 +20,7 @@ function PostFrom({post}) {
   })
   const navigate = useNavigate();
   const userData = useSelector(state => state.auth.userData);
+  console.log(userData.$id, "postForm");
   
   const submit = async(data) => {
     if (post) {
@@ -26,21 +30,21 @@ function PostFrom({post}) {
       }
       const dbPost = await service.updatePost(post.$id, {...data, featuredImage: file ? file.$id : undefined})
       if (dbPost) {
-        navigate(`/post/${dbPost.$id}`)
+        navigate(`/post/${dbPost.$id}/${userData.$id}`)
       } 
     }
     else{
       const file = data.image[0] ? await service.uploadFile(data.image[0]) : null;
       if (file) {
         const fileId = file.$id;
-        data.featuredImage = fileId;  
+        data.featuredImage = fileId; 
           const dbPost = await service.createPost({
             ...data,
             userId: userData?.$id,
             userName: userData?.name,
           })
           if (dbPost) {
-            navigate(`/post/${dbPost.$id}`)
+            navigate(`/post/${dbPost.$id}/${userData.$id}`)
           }
         }
     }

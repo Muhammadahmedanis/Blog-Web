@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { login } from '../store/authSlice';
-import { Button,  Input, Logo} from './index';
+import { Button, Input, Logo} from './index';
 import { useDispatch } from 'react-redux';
 import authService from '../appwrite/auth';
 import service from '../appwrite/configuration';
@@ -28,9 +28,7 @@ function Signup() {
                 if(currentUserData){
                     dispatch(login(currentUserData));
                 }
-                <Link to={`/home/${fileId}`} /> 
-                // (`/home/${fileId}`);
-                console.log(`/${fileId}`);
+                navigate(`/`);
             }
         } catch (error) {
             setError(error.message);
@@ -42,7 +40,6 @@ function Signup() {
         <div className={`mx-auto w-full max-w-lg shadow bg-blue-100 rounded-xl p-10 border border-black/10`}>
             <div className="mb-2 flex justify-center">
                 <h2 className="text-center text-2xl text-blue-800 font-bold leading-tight">Signup to create account</h2>
-            {/* <span className="inline-block w-full text-center"> <Logo width="100%"/></span> */}
             </div>
             {error &&  <p className="text-red-600 mt-8 text-center">{error}</p>}
             <form onSubmit={handleSubmit(create)}>

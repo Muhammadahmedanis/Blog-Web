@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Logo, LogoutBtn} from './index';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -11,6 +11,8 @@ import { HiPencilSquare } from "react-icons/hi2";
 function Header() {
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
+  const {id}  = useParams()
+  // console.log(id);
 
   const navItems = [
     {
@@ -30,14 +32,14 @@ function Header() {
       active: !authStatus,
     },
     {
-      name: "All Post",
-      slug: "/all-post",
+      name: "My Post",
+      slug: "/my-post",
       active: authStatus,
       icon: <HiPencilSquare size={22} />
     },
     {
       name: "Add Post",
-      slug: "/add-post",
+      slug: `add-post`,
       active: authStatus,
       icon: <RiBloggerLine size={21} />,
     }

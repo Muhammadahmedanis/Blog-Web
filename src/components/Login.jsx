@@ -15,13 +15,15 @@ function Login() {
     const[error, setError] = useState("");
     
     const login = async (data) => {
+        console.log("Ok");
+        
         setError("");
         try {
             const session = await authService.login(data);
             if(session){
                 const userData = await authService.getCurrentUser();
-                console.log(userData);
                 if(userData) dispatch(authLogin(userData));
+                // console.log(userData);
                 navigate("/");
             }
         } catch (error) {
@@ -30,7 +32,7 @@ function Login() {
     }
 
   return (
-    <div className='flex items-center justify-center w-full'>
+    <div className='flex items-center justify-center w-full py-6'>
         <div className={`mx-auto w-full max-w-lg bg-blue-100 rounded-xl p-10 border border-black/10`}>
             <h2 className='text-center text-2xl font-bold leading-tight'>Sign in to your account</h2>
             {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
