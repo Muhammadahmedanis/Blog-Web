@@ -37,9 +37,9 @@ function Signup() {
 
   return (
     <div className="flex items-center justify-center py-4">
-        <div className={`mx-auto w-full max-w-lg shadow bg-blue-100 rounded-xl p-10 border border-black/10`}>
+        <div className={`mx-auto w-full max-w-lg shadow bg-[rgb(235,221,183)] rounded-xl p-10`}>
             <div className="mb-2 flex justify-center">
-                <h2 className="text-center text-2xl text-blue-800 font-bold leading-tight">Signup to create account</h2>
+                <h2 className="text-center text-2xl text-[#dc8850] font-bold leading-tight">Signup to create account</h2>
             </div>
             {error &&  <p className="text-red-600 mt-8 text-center">{error}</p>}
             <form onSubmit={handleSubmit(create)}>
@@ -48,12 +48,12 @@ function Signup() {
                     <Input label="Full Name: " icon={<FaUser size={20} />} placeholder="Enter your name" {...register("name", { required: true })} />
                     <Input label="Email: " icon={<MdEmail size={20} />} placeholder="Enter your email" type="email" {...register("email", {required: true, validate: { matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || "Email address must be a valid address", }})}  /> 
                     <Input label="Password: " icon={<MdLockPerson size={20} />} type="password" placeholder="Enter your password" {...register("password", {required: true, })} />   
-                    <Button type="submit" className="w-full py-2 px-5 text-center text-[18px] font-medium rounded-lg border border-transparent bg-blue-200 hover:bg-blue-300 focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:bg-blue-900">Create Account</Button>
+                    <Button type="submit" className="w-full py-2 px-5 text-center text-[18px] font-medium rounded-lg border border-transparent bg-[#dc8850] text-[rgb(236,227,202)] hover:bg-[rgb(245,232,196)] hover:text-[#dc8850] focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:bg-blue-900">Create Account</Button>
                 </div>
             </form>
-            <p className="mt-2 text-center text-base text-blue-800">
+            <p className="mt-2 text-center text-base text-[#dc8850]">
                 Already have an account?&nbsp;
-                <Link to="/login" className="font-medium text-primary transition-all duration-200 hover:underline">
+                <Link to="/login" className="text-primary transition-all duration-200 !text-[#f4914e] font-bold hover:underline">
                     Sign In
                 </Link>
             </p>

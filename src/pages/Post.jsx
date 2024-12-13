@@ -37,7 +37,7 @@ export default function Post() {
     };
 
     return post &&
-        <div className="p-4 my-3 min-w-[270] max-w-[600px] border-2 border-gray-300 shadow-inner mx-auto rounded-xl">
+        <div className="p-4  min-w-[270] max-w-[600px] border-2 text-[#dc8850] bg-[rgb(219,202,154)] border-gray-300 shadow-inner mx-auto rounded-xl">
             <img src={appwriteService.getFilePreview(post.featuredImage)} alt={post.title} className="rounded-xl w-full" />
             <div className="my-2">
                 <h5 className="">{post.topic}</h5>

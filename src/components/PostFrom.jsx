@@ -71,11 +71,11 @@ function PostFrom({post}) {
   }, [watch, slugTransform, setValue])
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex justify-center p-2 pb-8">
-            <div className="w-100 p-2 border-2 border-gray-300 shadow-inner rounded">
-              <Input label="Topic Name: "  placeholder="Topic Name" className=" w-full p-2 bg-blue-100 border-none outline-none" {...register("topic", { required: true })} />
-              <Input label="Title: "  placeholder="Title" className=" w-full p-2 bg-blue-100 border-none outline-none" {...register("title", { required: true })} />
-              <Input label="Slug: " placeholder="Slug" className=" w-full p-2 bg-blue-100 border-none outline-none" {...register("slug", { required: true })}
+    <form onSubmit={handleSubmit(submit)} className="flex justify-center p-10 pb-8">
+            <div className="w-100 p-2 border-2 bg-[rgb(235,221,183)] border-gray-300 shadow-inner rounded">
+              <Input label="Topic Name: "  placeholder="Topic Name" className=" w-full p-2 placeholder-[#dc8850] bg-[rgb(235,221,183)] border-none outline-none" {...register("topic", { required: true })} />
+              <Input label="Title: "  placeholder="Title" className=" w-full p-2 placeholder-[#dc8850] bg-[rgb(235,221,183)]  border-none outline-none" {...register("title", { required: true })} />
+              <Input label="Slug: " placeholder="Slug" className=" w-full p-2 placeholder-[#dc8850] bg-[rgb(235,221,183)]  border-none outline-none" {...register("slug", { required: true })}
                   onInput={(e) => { setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true }) }}  
                 />
             {/* </div> */}
@@ -90,7 +90,7 @@ function PostFrom({post}) {
                 )}
                 <Select options={["active", "inactive"]} label="Status" className="" {...register("status", { required: true })} />
                 <RTE label="Content: " name="content" control={control} defaultValue={getValues("content")} />
-                <Button type="submit" bgColor={post ? "bg-green-500" : "bg-blue-200"} className="w-full mt-4 font-bold cursor-pointer">
+                <Button type="submit" bgColor={post ? "bg-green-500" : "bg-[#dc8850] text-[rgb(236,227,202)] hover:bg-[rgb(245,232,196)] hover:text-[#dc8850] "} className="w-full mt-4 font-bold cursor-pointer">
                     {post ? "Update Your Post" : "Submit Your Post"}
                 </Button>
             </div>

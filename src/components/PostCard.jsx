@@ -6,8 +6,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 // const regex2 = /^(\b\w+\b\W*){1,150}/;
-// useEffect(() => {
-// }, [])
+
 function PostCard({ $id, title, featuredImage, content, $createdAt, userName, topic, userId }) {
   const regex = /^\d{4}-\d{2}-\d{2}/;
   const date = $createdAt.match(regex);  
@@ -15,7 +14,7 @@ function PostCard({ $id, title, featuredImage, content, $createdAt, userName, to
     return (
       <div>
         <Link to={`/post/${$id}/${userId}`}>
-          { (<div className='min-w-[270] max-w-[310px] bg-blue-50 rounded-xl p-4'>
+          { (<div className=' min-w-[270] max-w-[325px] text-[#dc8850] bg-[rgb(219,202,154)] rounded-xl p-4'>
               <div className='max-w-[300px] justify-center mb-4'>
                   <img src={appwriteService.getFilePreview(featuredImage)} alt={title} className='rounded-xl h-44 w-full' />
               </div>

@@ -5,6 +5,8 @@ import authService from './appwrite/auth';
 import { login, logout } from './store/authSlice'
 import { Footer, Header } from './components';
 import { Outlet } from 'react-router-dom';
+import Loader from './components/Loader';
+import bg from '/blog2.jpg';
 
 function App() {
   const[loader, setLoader] = useState(true);
@@ -12,7 +14,6 @@ function App() {
   useEffect(() => {
     authService.getCurrentUser()
     .then((userData) => {
-      // console.log(userData);
       
       if(userData){
         dispatch(login({userData}));
@@ -28,16 +29,18 @@ function App() {
   }, [])
 
   return !loader ? (
-    <div className='flex flex-wrap content-between '>
+    <div className='flex flex-wrap content-between'>
     <div className='w-full block '>
+    {/* bg-cover bg-center style={{backgroundImage: `url(${bg})`}} */}
       <Header />
-      <main className='relative top-16 min-h-screen pb-6 pt-4 bg-blue-100'>
-        <Outlet  />
+      <main className='min-h-screen pt-3 bg-[rgb(236,227,202)]' >
+          <Outlet  />
       </main>
       <Footer />
     </div>
     </div>
-  ) : null
+  ) : ( <Loader /> ) 
 }
 
 export default App
+

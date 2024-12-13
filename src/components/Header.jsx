@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Container, Logo, LogoutBtn} from './index';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { RiBloggerLine } from "react-icons/ri";
 import { HiPencilSquare } from "react-icons/hi2";
 
 function Header() {
+  const[isMenuOpen, setIsMenuOpen] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
   const navigate = useNavigate();
   const {id}  = useParams()
@@ -46,20 +47,20 @@ function Header() {
   ]
 
   return (
-    <nav className="shadow bg-blue-100 dark:bg-gray-900 fixed top-0 w-full z-10">
+    <nav className="shadow  bg-[rgb(219,202,154)] dark:bg-gray-900 sticky top-0 w-full z-10">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <div>
             <Link to='/'> <Logo width='60px'/> </Link>
         </div>
-        <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-3 w-16 h-10 justify-center text-sm rounded-lg md:hidden bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} type="button" className="inline-flex items-center p-2 w-12 h-10 justify-center text-sm rounded-lg md:hidden bg-[#dc8850] text-[rgb(236,227,202)] hover:bg-[rgb(245,232,196)] hover:text-[#dc8850] focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded={isMenuOpen}>
             <GiHamburgerMenu size={30} />
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium flex flex-col gap-3 p-4 md:p-0 md:flex-row md:space-x-8l rounded-lg">
+        <div className={`${ isMenuOpen ? 'block' : 'hidden'} md:block md:w-auto" id="navbar-default`}>
+          <ul className="font-medium flex flex-col gap-3 p-2 md:p-0 md:flex-row md:space-x-8l rounded-lg">
               {
                 navItems.map((item) =>  
                   item.active ? (
-                    <li className='py-2 px-5 text-[18px] font-medium rounded-lg border border-blue-300  bg-blue-200 text-blue-800 hover:bg-blue-300 focus:outline-none focus:bg-blue-200' key={item.name}>
+                    <li className='py-2 px-4 text-[18px]  font-medium rounded-lg border border-blue-300  bg-[#dc8850] text-[rgb(236,227,202)] hover:bg-[rgb(245,232,196)] hover:text-[#dc8850] focus:outline-none focus:bg-blue-200' key={item.name}>
                       <button className='w-full justify-center flex items-center gap-2' onClick={() => navigate(item.slug)} >{item.name} {item.icon}</button>
                     </li>
                   ) : null
