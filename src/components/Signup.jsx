@@ -19,21 +19,32 @@ function Signup() {
     const create = async (data) => {
         setError("");
         try {
-            const userData = await authService.createAccount(data);
             const file = data.image[0] ? await service.uploadFile(data.image[0]) : null;
             const fileId = file.$id;
+            const userImage = service.getFilePreview(fileId);
             
-            if(userData){
+            const payLoad = { ...data, userImage };
+            // console.log(payLoad, "payload");
+    
+            const userData = await authService.createAccount(payLoad);
+            // console.log(userData, "userData");
+    
+            if (userData) {
                 const currentUserData = await authService.getCurrentUser();
-                if(currentUserData){
+                if (currentUserData) {
                     dispatch(login(currentUserData));
                 }
+    
+                const imageUrl = await service.userPost(currentUserData.name, userImage);
+                // console.log(imageUrl, "imageUrl");
+    
                 navigate(`/`);
             }
         } catch (error) {
             setError(error.message);
         }
-    }
+    };
+    
 
   return (
     <div className="flex items-center justify-center py-4">
@@ -61,5 +72,4 @@ function Signup() {
     </div>
   )
 }
-
 export default Signup

@@ -37,7 +37,7 @@ function Login() {
                 <div className='space-y-5'>
                     <Input label="Email: " icon={<MdEmail size={20} />} placeholder="Enter your email" type="email" {...register("email", {required: true, validate: { matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) || "Email address must be a valid address", }})}  /> 
                     <Input label="Password: " icon={<MdLockPerson size={20} />} type="Password" placeholder="Enter your password" {...register("password", { required: true })}  />
-                    <Button type="submit" className="w-full py-2 px-5 text-center text-[18px] font-medium rounded-lg border border-transparent bg-[#dc8850] text-[rgb(236,227,202)] hover:bg-[rgb(245,232,196)] hover:text-[#dc8850] focus:outline-none focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:bg-blue-900">Signin</Button>
+                    <Button type="submit" className="w-full py-2 px-5 text-center text-[18px] font-medium rounded-lg border border-transparent bg-[#dc8850] text-[rgb(236,227,202)] hover:bg-[rgb(245,232,196)] hover:text-[#dc8850] focus:outline-none  disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:hover:bg-blue-900 dark:focus:bg-blue-900">Signin</Button>
                 </div>
             </form>
             <p className="mt-2 text-center text-base text-[#dc8850]">

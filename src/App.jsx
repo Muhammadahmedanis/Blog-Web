@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authService from './appwrite/auth';
 import { login, logout } from './store/authSlice'
 import { Footer, Header } from './components';
 import { Outlet } from 'react-router-dom';
 import Loader from './components/Loader';
-import bg from '/blog2.jpg';
 
 function App() {
   const[loader, setLoader] = useState(true);
@@ -21,7 +20,7 @@ function App() {
         dispatch(logout());
       }
     }).catch((err) => {
-      console.log("error", err);
+      console.log("error1:", err);
     })
     .finally(() => {
       setLoader(false);
@@ -31,9 +30,8 @@ function App() {
   return !loader ? (
     <div className='flex flex-wrap content-between'>
     <div className='w-full block '>
-    {/* bg-cover bg-center style={{backgroundImage: `url(${bg})`}} */}
       <Header />
-      <main className='min-h-screen pt-3 bg-[rgb(236,227,202)]' >
+      <main className='min-h-screen py-3 bg-[rgb(236,227,202)]' >
           <Outlet  />
       </main>
       <Footer />

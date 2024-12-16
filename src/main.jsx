@@ -8,7 +8,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.jsx';
 import MyPosts from './pages/MyPosts.jsx';
 import { AuthLayout, Login, Signup } from './components/index.js';
-// import Signup from './pages/Signup.jsx';
 import AddPost from './pages/AddPost.jsx';
 import EditPost from './pages/EditPost.jsx';
 import Post from './pages/Post.jsx';
@@ -49,7 +48,7 @@ const router = createBrowserRouter(
                     )
                 },
                 {
-                    path: '/add-post',
+                    path: '/create-post',
                     element: (
                         <AuthLayout authentication>
                             {/* {" "} */}
@@ -68,9 +67,8 @@ const router = createBrowserRouter(
                 },
                 {
                     path: "/post/:slug/:id",
-                    element: <Post />,
+                    element: <Post />
                 }
-
             ]
         }
     ],
@@ -83,13 +81,12 @@ const router = createBrowserRouter(
             v7_skipActionErrorRevalidation: true, // Prevents revalidation when action errors occur
         },
     }
-    
 )
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Provider store={store}>
-            <RouterProvider  future={{ v7_startTransition: true }} router={router} />
+            <RouterProvider future={{ v7_startTransition: true }} router={router} />
         </Provider>
     </StrictMode>
 )

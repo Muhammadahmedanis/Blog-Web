@@ -6,9 +6,11 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Loader';
 
-function AllPost({children}) {
+function AllPost() {
     const[loader, setLoader] = useState(true);
     const userData = useSelector(state => state.auth.userData);
+    const userStatus = useSelector(state => state.auth.status);
+    
     const[posts, setPosts] = useState([]);
     useEffect(() => {
         appwriteService.getPosts([]).then((posts) => {
@@ -22,7 +24,7 @@ function AllPost({children}) {
         })
     }, [])
    
-    if(posts.length === 0){
+    if(!userStatus){
     return (
         <div className="w-full py-8 mt-4 text-center">
                 <Container>

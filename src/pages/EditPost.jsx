@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, PostForm } from '../components';
 import appwriteService from '../appwrite/configuration';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function EditPost() {
     const[post, setPost] = useState(null);

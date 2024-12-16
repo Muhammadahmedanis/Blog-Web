@@ -19,7 +19,17 @@ export class Service{
         try {
             return await this.databases.createDocument( config.appwriteDatabaseId, config.appwriteCollectionId, slug, {title, content, featuredImage, status, topic, userId, userName})
         } catch (error) {
-            console.log("error in create post");
+            console.log("error in create post", error);
+            throw error
+        }
+    }
+
+    async userPost(userName, userImage){
+        try {
+            console.log(userImage, userName);
+            return await this.databases.createDocument( config.appwriteDatabaseId, "675df1ec003193ef1b67", ID.unique(), {userName, userImage})
+        } catch (error) {
+            console.log("error in create post", error);
             throw error
         }
     }
@@ -79,10 +89,22 @@ export class Service{
                 config.appwriteCollectionId,
                 queries,
             );
-            // console.log(response);
             return response;
         } catch (error) {
-            console.log("error in get all post");
+            console.log("error in get all post", error);
+            return false;
+        }
+    }
+
+    async getUserPost() {
+        try {
+            const response =  await this.databases.listDocuments(
+                config.appwriteDatabaseId,
+                "675df1ec003193ef1b67",
+            );
+            return response;
+        } catch (error) {
+            console.log(error);
             return false;
         }
     }
@@ -96,20 +118,19 @@ export class Service{
                 file,
             )
         } catch (error) {
-            console.log("error inupload file");
+            console.log("error inupload file", error);
             return false;
         }
     }
 
-    async deleteFile(fileId){
-        try {
-                await this.deleteFile(
-                config.appwriteBucketId,
-                fileId
-            )
+    async deleteFile(fileId) {
+        try {   
+            console.log("Deleting file with ID:", fileId);
+            await this.bucket.deleteFile(config.appwriteBucketId, fileId); 
+            console.log("File deleted successfully");
             return true;
         } catch (error) {
-            console.log("error");
+            console.error("Error deleting file:", error);
             return false;
         }
     }

@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import service from '../appwrite/configuration'
 import { RTE, Input, Button, Select } from './index';
 
 function PostFrom({post}) { 
-  // const { id } = useParams();
-  // console.log(id);
-  
   const { register, handleSubmit, watch, setValue, control, getValues } = useForm({ 
     defaultValues: {
       topic: post?.topic || '',
@@ -20,7 +17,6 @@ function PostFrom({post}) {
   })
   const navigate = useNavigate();
   const userData = useSelector(state => state.auth.userData);
-  console.log(userData.$id, "postForm");
   
   const submit = async(data) => {
     if (post) {
@@ -28,7 +24,7 @@ function PostFrom({post}) {
       if(file){
         service.deletePost(post.featuredImage);
       }
-      const dbPost = await service.updatePost(post.$id, {...data, featuredImage: file ? file.$id : undefined})
+      const dbPost = await service.updatePost(post.$id, {...data, featuredImage: file ? file.$id : undefined});
       if (dbPost) {
         navigate(`/post/${dbPost.$id}/${userData.$id}`)
       } 
@@ -43,8 +39,9 @@ function PostFrom({post}) {
             userId: userData?.$id,
             userName: userData?.name,
           })
+          console.log(userData.$id + " ok " + dbPost.$id);
           if (dbPost) {
-            navigate(`/post/${dbPost.$id}/${userData.$id}`)
+            navigate(`/post/${dbPost.$id}/${userData.$id}`);
           }
         }
     }
@@ -78,8 +75,6 @@ function PostFrom({post}) {
               <Input label="Slug: " placeholder="Slug" className=" w-full p-2 placeholder-[#dc8850] bg-[rgb(235,221,183)]  border-none outline-none" {...register("slug", { required: true })}
                   onInput={(e) => { setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true }) }}  
                 />
-            {/* </div> */}
-            {/* <div className="w-1/3 px-2"> */}
                 <Input label="Featured Image: " type="file" className="my-2" accept="image/png, image/jpg, image/jpeg, image/gif" {...register("image", 
                   { required: !post })} />
                   {/* for editing case below condition */}

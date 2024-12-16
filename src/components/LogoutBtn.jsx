@@ -13,7 +13,6 @@ function LogoutBtn() {
       if (session) {
         await authService.logout(); 
         dispatch(logout()); 
-        // console.log("User logged out successfully");
       } else {
         console.log("No active session found");
         dispatch(logout()); 
