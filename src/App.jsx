@@ -10,11 +10,12 @@ import Loader from './components/Loader';
 function App() {
   const[loader, setLoader] = useState(true);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     authService.getCurrentUser()
     .then((userData) => {
-      
       if(userData){
+        console.log(userData);
         dispatch(login({userData}));
       } else{
         dispatch(logout());
@@ -31,7 +32,7 @@ function App() {
     <div className='flex flex-wrap content-between'>
     <div className='w-full block '>
       <Header />
-      <main className='min-h-screen py-3 bg-[rgb(236,227,202)]' >
+      <main className='min-h-screen p-3 bg-[#f5f1df]' >
           <Outlet  />
       </main>
       <Footer />

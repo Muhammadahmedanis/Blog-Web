@@ -39,27 +39,27 @@ export default function Post() {
     };
 
     return isAuthor ? 
-        <div className="p-4 min-w-[270] max-w-[600px] border-2 text-[#dc8850] bg-[rgb(219,202,154)] border-gray-300 shadow-inner mx-auto rounded-xl">
-            <img src={appwriteService.getFilePreview(post.featuredImage)} alt={post.title} className="rounded-xl w-full" />
+        <div className="p-4 min-w-[370] max-w-[800px] border-2 text-[#966a38] border-[#dcca95] bg-[#eae1be] shadow-inner mx-auto rounded-xl">
+            <img src={appwriteService.getFilePreview(post.featuredImage)} alt={post.title} className="rounded-xl w-full max-h-[400px]" />
             <div className="my-2">
                 <h5>{post.topic}</h5>
-                <h2 className="text-xl font-bold">{post.title}</h2>
+                <h2 className="text-xl font-bold text-[#62472c]">{post.title}</h2>
             </div>
-            <div className="">
+            <div>
                 {parse(post.content)}
             </div>
             {isAuthor && (
                 <div className="my-4">
                     <Link to={`/edit-post/${post.$id}`}>
-                        <Button bgColor="bg-green-500" className="mr-3">
+                        <Button className="mr-3 bg-[#f5f1df] border-[#dcca95] text-[#966a38] hover:bg-[#c29a4d] hover:text-[#f5f1df] ">
                             <div className="flex items-center text-[17px] gap-2 font-semibold">
                                 Edit
                                 <HiPencilSquare size={20} />
                             </div>
                         </Button>
                     </Link>
-                    <Button bgColor="bg-red-500" onClick={deletePost}>
-                        <div className="flex items-center text-[17px] gap-2 font-semibold">
+                    <Button className="bg-[#f5f1df] border-[#dcca95] text-[#966a38] hover:bg-[#c29a4d] hover:text-[#f5f1df] " onClick={deletePost}>
+                        <div className="flex items-center text-[17px] gap-2 font-semibold ">
                             Delete
                             <MdDeleteOutline size={20} />
                         </div>

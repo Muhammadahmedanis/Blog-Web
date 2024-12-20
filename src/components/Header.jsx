@@ -49,7 +49,7 @@ function Header() {
   ]
 
   return (
-    <nav className="shadow  bg-[rgb(219,202,154)] dark:bg-gray-900 sticky top-0 w-full z-10">
+    <nav className="shadow bg-gradient-to-l from-[#cfb270] to-[#eae1be]  dark:bg-gray-900 sticky top-0 w-full z-10">
       <div className="w-full max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <div>
             <Link to='/'> <Logo width='60px'/> </Link>
@@ -62,7 +62,7 @@ function Header() {
               {
                 navItems.map((item) =>  
                   item.active ? (
-                    <li className='py-2 px-4 text-[18px]  font-medium rounded-lg border border-[rgb(219,202,154)]  bg-[#dc8850] text-[rgb(236,227,202)] hover:bg-[rgb(245,232,196)] hover:text-[#dc8850] focus:outline-none focus:bg-blue-200' key={item.name}>
+                    <li  className={`py-2 px-4 text-[18px]  font-medium rounded-lg border-2 bg-[#f5f1df] border-[#dcca95] text-[#966a38] hover:bg-[#c29a4d] hover:text-[#f5f1df] focus:outline-none focus:bg-blue-200`} key={item.name}>
                       <button className='w-full justify-center flex items-center gap-2' onClick={() => navigate(item.slug)} >{item.name} {item.icon}</button>
                     </li>
                   ) : null
